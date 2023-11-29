@@ -1,0 +1,41 @@
+MessageServer : ServerSocket, Socket
+MessageClient : Socket
+Message : DO, VO, DTO, JavaBean (데이터객체)
+
+실습 1)
+1. MessageClient 에서 Message객체를 생성하여 서버로 전송 (직렬화)
+2. MessageServer는 전송받은 Message객체의 제목,내용,작성일시를 출력 (역직렬화)
+
+실습 2)
+List<Message>를 직렬화, 역직렬화 해서 출력
+
+실습 3)
+서버에서 전송받은 List<Message>를 C:/java_logs/log_20231121.txt로 저장
+
+실습 4)
+MessageGUI : JFrame 생성하고 파일에서 읽어서 데이터가져오기 버튼 클릭시 GUI에 표시
+
+실습 5)
+강사PC) IP : 172.30.1.34, PORT : 5678
+강사PC에서 5초에 하나씩 숫자를 생성합니다.
+강사PC에서 숫자를 받아 표시하고 합계를 누적하는 GUI 프로그램을 작성하시오. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

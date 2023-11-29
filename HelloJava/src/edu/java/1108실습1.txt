@@ -1,0 +1,13 @@
+* 11/8 실습1
+상속관계의 클래스 2개를 만드시고 오버라이딩의 예를 보이시오!
+
+* 11/8 실습2
+[인터페이스]
+Walkable 걷는다
+Runnable 뛴다
+Flyable 난다
+Soundable 소리낸다
+[클래스]
+Animal
+Lion, Eagle
+
