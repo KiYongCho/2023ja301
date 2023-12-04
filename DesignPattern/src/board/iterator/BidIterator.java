@@ -14,7 +14,7 @@ public class BidIterator implements Iterator {
 
 	@Override
 	public boolean hasNext() {
-		if (currBid==10000) {
+		if (currBid==10) {
 			return false;
 		} else {
 			return true;

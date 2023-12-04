@@ -3,14 +3,15 @@ package board;
 import board.dao.BoardDao;
 import board.service.BoardService;
 
-public class BoardMain {
+public class BoardMain extends BoardTemplate {
 	
 	static BoardService boardService 
 		= BoardDao.getInstance();
 	
 	public static void main(String[] args) {
 		
-		printList();
+		BoardTemplate bt = new BoardMain();
+		bt.printList();
 		
 		/*
 		boardService.deleteBoard(2);
@@ -31,12 +32,22 @@ public class BoardMain {
 		
 	}
 	
-	public static void printList() {
+	@Override
+	public void printTop() {
+		System.out.println("### 리스트 출력 시작");
+	}
+	
+	@Override
+	public void printMiddle() {
 		boardService.getBoardList().forEach(bl -> {
 			System.out.println("제목 : " + bl.getTitle());
 			System.out.println("내용 : " + bl.getContent());
 		});
-		System.out.println("-----------------------------------");
+	}
+	
+	@Override
+	public void printBottom() {
+		System.out.println("### 리스트 출력 끝");
 	}
 
 }

@@ -4,11 +4,10 @@ import board.iterator.BidIterator;
 
 public class BidAggregate implements Aggregate {
 	
-	private int[] bidArray = new int[10000];
-	
+	private int[] bidArray = new int[10];	
 	public BidAggregate() {
 		
-		for (int i=0; i<10000; i++) {
+		for (int i=0; i<10; i++) {
 			bidArray[i] = i+1;
 		}
 		
