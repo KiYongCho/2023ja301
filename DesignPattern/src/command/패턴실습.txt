@@ -1,0 +1,21 @@
+[패턴실습]
+
+* 두개의 숫자와 연산자를 입력하면 사칙연산을 하는 프로그램 개발
+- Command패턴을 활용해서 사칙연산의 각 명령(add, sub, multi, dev)을 클래스화 하여 사용
+
+* 필요클래스
+Command 인터페이스
+AddCommand 클래스
+SubCommand 클래스
+MultiCommand 클래스
+DevCommand 클래스
+CommandMain 클래스 (main메소드)
+
+* 참고
+StringTokenizer
+
+* 입출력 예시
+10 20 +
+결과 : 30
+5 10 *
+결과 : 50
