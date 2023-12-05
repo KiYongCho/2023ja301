@@ -8,15 +8,20 @@ import state.state.OddState;
 import state.state.State;
 import state.state.ThreeMultiState;
 
+// 구체적인 Context
 public class NumberPrint implements Context {
 	
+	// 상태
 	private State state;
+	// 발생한 숫자
 	private int num;
 	
+	// Context가 생성될때 State가 있다.
 	public NumberPrint(State state) {
 		this.state = state;
 	}
 
+	// 숫자를 발생시키는 메소드
 	@Override
 	public void setNum() {
 		while (true) {
@@ -35,6 +40,7 @@ public class NumberPrint implements Context {
 		}
 	}
 
+	// 숫자에 따라 상태객체를 리스트에 저장
 	@Override
 	public List<State> changeState(int num) {
 		List<State> stateList = new ArrayList<State>();
