@@ -1,33 +1,42 @@
 package jdbctest;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class OracleConnection {
 	
-	// 데이터베이스 연결 인터페이스
 	private static Connection conn;
+	private static Properties prop;
 	
-	// Oracle JDBC URL : 연결할 오라클데이터베이스의 경로
+	static {
+		prop = new Properties();
+		try {
+			prop.load(new FileReader(
+					new File("C:/git/2023ja301/JDBCTest/src/prop/dbconn.properties"))
+			);
+		} catch (FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
 	
-	// 형식 > jdbc:oracle:thin:@오라클서버아이피:오라클포트번호:SID
-	private static final String JDBC_URL
-		= "jdbc:oracle:thin:@localhost:1521:xe";
-	
-	// 오라클 데이터베이스 드라이버 클래스명
-	private static final String JDBC_DRIVER
-		= "oracle.jdbc.driver.OracleDriver";
-	
-	// 계정명
-	private static final String JDBC_USER
-		= "realchoky";
-	
-	// 계정 비밀번호
-	private static final String JDBC_PWD
-	= "1234";
+	private static final String JDBC_URL 
+		= prop.getProperty("JDBC_URL");
+	private static final String JDBC_DRIVER 
+		= prop.getProperty("JDBC_DRIVER");
+	private static final String JDBC_USER 
+		= prop.getProperty("JDBC_USER");
+	private static final String JDBC_PWD 
+		= prop.getProperty("JDBC_PWD");
 	
 	public static Connection getConnection() {
 		try {

@@ -1,0 +1,3 @@
+[실습]
+BoardTest5에 있는 sql 구문들을 /prop/sql.properties
+파일로 분리하기!

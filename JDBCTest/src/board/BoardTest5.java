@@ -1,11 +1,16 @@
 package board;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import jdbctest.OracleConnection;
 
@@ -14,24 +19,47 @@ public class BoardTest5 {
 	private static Connection conn;
 	private static PreparedStatement pstmt;
 	private static ResultSet rs;
-	private String sql;
+	private static Properties prop;
 	
 	private BoardTest5() {
 		conn = OracleConnection.getConnection();
+		prop = new Properties();
+		try {
+			prop.load(new FileReader(new File(
+					"C:/git/2023ja301/JDBCTest/src/prop/sql.properties"
+			)));
+		} catch (FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
 		try {
+			
 			BoardTest5 boardTest5 = new BoardTest5();
-			List<Board> boardList = boardTest5.listBoard(); // list
-			Board board = boardTest5.selectBoard(11); // select
+			
+			// List<Board> boardList = boardTest5.listBoard(); // list
+			// System.out.println(boardList);
+			
+			// Board board = boardTest5.selectBoard(11); // select
+			// System.out.println(board);
+			
+			/*
 			int result1 = boardTest5.insertBoard(
-					new Board(0, "작성자", "제목", "내용")
+					new Board(0, "작성자ggg", "제목ggg", "내용ggg")
 			); // insert
+			*/
+			
+			/*
 			int result2 = boardTest5.updateBoard(
-					new Board(11, "수정작성자", "수정제목", "수정내용")
+					new Board(16, "gggg", "gggg", "gggg")
 			); // update
-			int result3 = boardTest5.deleteBoard(11); // delete
+			*/
+			
+			// int result3 = boardTest5.deleteBoard(16); // delete
+
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -42,8 +70,7 @@ public class BoardTest5 {
 
 	// 1. list
 	private List<Board> listBoard() throws SQLException {
-		sql = " select bid, bwriter, btitle, bcontent from board ";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(prop.getProperty("LIST_SQL"));
 		rs = pstmt.executeQuery();
 		List<Board> boardList = new ArrayList<Board>();
 		while (rs.next()) {
@@ -59,9 +86,7 @@ public class BoardTest5 {
 
 	// 2. select
 	private Board selectBoard(int bid) throws SQLException {
-		sql = " select bid, bwriter, btitle, bcontent from board ";
-		sql += " where bid=? ";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(prop.getProperty("SELECT_SQL"));
 		pstmt.setInt(1, bid);
 		rs = pstmt.executeQuery();
 		Board board = new Board();
@@ -76,8 +101,7 @@ public class BoardTest5 {
 
 	// 3. insert
 	private int insertBoard(Board board) throws SQLException {
-		sql = " insert into board values (seq_board.nextval, ?, ?, ?) ";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(prop.getProperty("INSERT_SQL"));
 		pstmt.setString(1, board.getBwriter());
 		pstmt.setString(2, board.getBtitle());
 		pstmt.setString(3, board.getBcontent());
@@ -86,9 +110,7 @@ public class BoardTest5 {
 
 	// 4. update
 	private int updateBoard(Board board) throws SQLException {
-		sql = " update board set bwriter=?, btitle=?, bcontent=? ";
-		sql += " where bid=? ";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(prop.getProperty("UPDATE_SQL"));
 		pstmt.setString(1, board.getBwriter());
 		pstmt.setString(2, board.getBtitle());
 		pstmt.setString(3, board.getBcontent());
@@ -98,10 +120,9 @@ public class BoardTest5 {
 
 	// 5. delete
 	private int deleteBoard(int bid) throws SQLException {
-		sql = " delete board where bid=? ";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(prop.getProperty("DELETE_SQL"));
 		pstmt.setInt(1, bid);
-		return pstmt.executeUpdate(sql);
+		return pstmt.executeUpdate();
 	}
 
 } // class
