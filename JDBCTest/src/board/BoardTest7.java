@@ -15,6 +15,85 @@
 
 package board;
 
-public class BoardTest7 {
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Savepoint;
 
-}
+import jdbctest.OracleConnection;
+
+public class BoardTest7 {
+	
+	private Connection conn;
+	private Savepoint sp1;
+	private Savepoint sp2;
+	
+	BoardTest7() {
+		BoardTest5 bt5 = new BoardTest5();
+		conn = bt5.getConnection();
+		try {
+			
+			// autocommit 여부 확인
+			System.out.println(conn.getAutoCommit());
+			
+			// 1. 트랜잭션 처리를 위해 autocommit을 false로 설정
+			conn.setAutoCommit(false);
+			
+			// 2. 필요한 sql구문들을 수행
+			Board board = new Board(0, "작성자", "제목", "내용");
+			bt5.insertBoard(board);
+			
+			sp1 = conn.setSavepoint("sp1");
+			
+			// btitle은 not null인데 null값을 입력해서 강제로 예외 발생시킴
+			Board board2 = new Board(1000, "", "수정제목", "수정내용");
+			bt5.updateBoard(board2);
+			
+			sp2 = conn.setSavepoint("sp2");
+			
+			bt5.deleteBoard(17);
+			
+			// 3. 커밋
+			conn.commit();
+			
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			try {
+				// 4. 만약에 작업중에 예외가 발생하면 롤백
+				conn.rollback();
+				// conn.rollback(sp2); 특정 시점으로 롤백
+			} catch (SQLException sqle2) {
+				sqle2.printStackTrace();
+			}
+		} finally {
+			try {
+				// 5. setAutoCommit true로 설정
+				conn.setAutoCommit(true);
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		new BoardTest7();
+	} // main
+
+} // class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

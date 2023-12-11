@@ -21,7 +21,7 @@ public class BoardTest5 {
 	private static ResultSet rs;
 	private static Properties prop;
 	
-	private BoardTest5() {
+	BoardTest5() {
 		conn = OracleConnection.getConnection();
 		prop = new Properties();
 		try {
@@ -34,31 +34,31 @@ public class BoardTest5 {
 			ioe.printStackTrace();
 		}
 	}
+	
+	public Connection getConnection() {
+		return conn;
+	}
 
 	public static void main(String[] args) {
 		try {
 			
 			BoardTest5 boardTest5 = new BoardTest5();
 			
-			// List<Board> boardList = boardTest5.listBoard(); // list
-			// System.out.println(boardList);
+			List<Board> boardList = boardTest5.listBoard(); // list
+			System.out.println(boardList);
 			
-			// Board board = boardTest5.selectBoard(11); // select
-			// System.out.println(board);
+			Board board = boardTest5.selectBoard(11); // select
+			System.out.println(board);
 			
-			/*
 			int result1 = boardTest5.insertBoard(
 					new Board(0, "작성자ggg", "제목ggg", "내용ggg")
 			); // insert
-			*/
 			
-			/*
 			int result2 = boardTest5.updateBoard(
 					new Board(16, "gggg", "gggg", "gggg")
 			); // update
-			*/
-			
-			// int result3 = boardTest5.deleteBoard(16); // delete
+					
+			int result3 = boardTest5.deleteBoard(16); // delete
 
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -69,7 +69,7 @@ public class BoardTest5 {
 	} // main
 
 	// 1. list
-	private List<Board> listBoard() throws SQLException {
+	List<Board> listBoard() throws SQLException {
 		pstmt = conn.prepareStatement(prop.getProperty("LIST_SQL"));
 		rs = pstmt.executeQuery();
 		List<Board> boardList = new ArrayList<Board>();
@@ -85,7 +85,7 @@ public class BoardTest5 {
 	}
 
 	// 2. select
-	private Board selectBoard(int bid) throws SQLException {
+	Board selectBoard(int bid) throws SQLException {
 		pstmt = conn.prepareStatement(prop.getProperty("SELECT_SQL"));
 		pstmt.setInt(1, bid);
 		rs = pstmt.executeQuery();
@@ -100,7 +100,7 @@ public class BoardTest5 {
 	}
 
 	// 3. insert
-	private int insertBoard(Board board) throws SQLException {
+	int insertBoard(Board board) throws SQLException {
 		pstmt = conn.prepareStatement(prop.getProperty("INSERT_SQL"));
 		pstmt.setString(1, board.getBwriter());
 		pstmt.setString(2, board.getBtitle());
@@ -109,7 +109,7 @@ public class BoardTest5 {
 	}
 
 	// 4. update
-	private int updateBoard(Board board) throws SQLException {
+	int updateBoard(Board board) throws SQLException {
 		pstmt = conn.prepareStatement(prop.getProperty("UPDATE_SQL"));
 		pstmt.setString(1, board.getBwriter());
 		pstmt.setString(2, board.getBtitle());
@@ -119,7 +119,7 @@ public class BoardTest5 {
 	}
 
 	// 5. delete
-	private int deleteBoard(int bid) throws SQLException {
+	int deleteBoard(int bid) throws SQLException {
 		pstmt = conn.prepareStatement(prop.getProperty("DELETE_SQL"));
 		pstmt.setInt(1, bid);
 		return pstmt.executeUpdate();
