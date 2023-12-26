@@ -8,7 +8,7 @@ let l1;
 const c1 = null;
 console.log(v1);
 console.log(l1);
-console.log(c1);
+console.log(c1); 
 
 // 2. 초기화
 v1 = 1;
