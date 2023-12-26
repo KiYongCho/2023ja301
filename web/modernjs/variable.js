@@ -83,7 +83,7 @@ function fscope() {
     let bl = "bl";
     const bc = "bc";
 }
-console.log(gv);
+console.log(gv); 
 console.log(gl);
 console.log(gc);
 //console.log(fv);

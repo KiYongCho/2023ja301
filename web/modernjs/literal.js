@@ -4,7 +4,7 @@
 // , null, undefined, 객체, 배열, 함수, 정규표현식
 let v1 = 100;
 console.log(`v1=>${v1}, v1 type=>${typeof v1}`);
-console.log(`v1=>${v1}, v1 type=>${v1 instanceof Number}`);
+console.log(`v1=>${v1}, v1 type=>${v1 instanceof Number}`); 
 let v2 = 3.0;
 console.log(`v2=>${v2}, v1 type=>${typeof v2}`);
 let v3 = 0b0001;
