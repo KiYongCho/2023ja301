@@ -9,5 +9,9 @@ global.document = document;
 let $ = jQuery = require('jquery')(window);
 
 $(function() {
-    console.log('hello jquery!');
+    for (ele in $) {
+        console.log(ele);
+    }
+    let jsonObj = $.parseJSON(`{"name": "홍길동"}`);
+    console.log(jsonObj.name);
 });
