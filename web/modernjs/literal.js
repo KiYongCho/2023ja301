@@ -7,7 +7,7 @@ console.log(`v1=>${v1}, v1 type=>${typeof v1}`);
 console.log(`v1=>${v1}, v1 type=>${v1 instanceof Number}`);  
 let v2 = 3.0;
 console.log(`v2=>${v2}, v1 type=>${typeof v2}`);
-let v3 = 0b0001;
+let v3 = 0b0001; 
 console.log(`v3=>${v3}, v1 type=>${typeof v3}`);
 let v4 = 0o01;
 console.log(`v4=>${v4}, v1 type=>${typeof v4}`);
