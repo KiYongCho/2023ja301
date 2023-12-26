@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf8"?>
+<books>
+    <book>
+        <title>사피엔스</title>
+        <author>외국인</author>
+        <price>30000</price>
+    </book><book>
+        <title>코스모스</title>
+        <author>외계인</author>
+        <price>50000</price>
+    </book>
+    <book>
+        <title>총균쇠</title>
+        <author>제러드</author>
+        <price>20000</price>
+    </book>        
+</books>

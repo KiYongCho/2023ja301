@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf8"?>
+<!--
+<!DOCTYPE students SYSTEM "students.dtd">
+-->
+<students xmlns="http://www.google.com/"
+xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+xs:schemaLocation="students.xsd">
+<student>
+<no>1</no>
+<name>홍길동</name>
+</student>
+<student>
+<no>2</no>
+<name>강감찬</name>
+</student>
+</students>

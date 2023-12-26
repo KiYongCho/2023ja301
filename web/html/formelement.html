@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css"
+        href="css/style.css" />
+    </head>
+    <body>
+        <!--
+            action : 데이터를 전송할 서버경로
+            method : http method, get 또는 post
+        -->
+        <form action="#" method="post">
+            <input type="text" name="sid" value="100" />
+            <input type="text" name="semail" 
+                value="hong@hong.com" />
+            <input type="password" name="spass" />
+            <input type="radio" name="sgender" value="male" />남
+            <input type="radio" name="sgender" value="female" />여
+            <input type="checkbox" name="shobby" value="낚시" />낚시
+            <input type="checkbox" name="shobby" value="등산" />등산
+            <select name="sselect">
+            <option>--- 선택 ---</option>
+            <optgroup>
+             <option value="am">오전</option>
+             <option value="pm">오후</option>
+            </optgroup>
+             <optgroup>
+             <option value="a">A</option>
+             <option value="b">B</option>
+            </optgroup>
+            </select>
+            <textarea name="smemo"></textarea>
+            <input type="submit" value="서버로전송" />
+        </form>
+    </body>
+</html>
