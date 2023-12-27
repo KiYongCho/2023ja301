@@ -27,8 +27,8 @@ console.log(str5);
 console.log(`${1+2+3}`);
 
 // 3. boolean : true or false
-// false로 판별되는 것들 : false, undefined, null, 0, -0, NaN, 0n, -0n, '', "", ``, []
-console.log([]==false);
+// false로 판별되는 것들 : false, undefined, null, 0, -0, NaN, 0n, -0n, '', "", ``
+if (!0) console.log("0 is falsy");
 
 // 4. undefined, 5. null
 // undefined : 선언하고 초기화되지 않았다. (선언만 하면 자동으로 undefined로 초기화 된다)
