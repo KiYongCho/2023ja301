@@ -1,6 +1,7 @@
 /* 변수 */
 
 // 변수는 선언, 초기화, 할당의 단계를 거쳐 사용된다.
+// 자바스크립트에서는 선언만한 변수는 undefined로 초기화된다.
 
 // 1. 선언
 var v1;
@@ -34,18 +35,10 @@ console.log(`v2=>${v2}, type=>${typeof v2}`);
 v2 = true;
 console.log(`v2=>${v2}, type=>${typeof v2}`);
 
-// undefined, null
-let v3;
-console.log(v3);
-let v4 = undefined;
-console.log(v4);
-let v5 = null;
-console.log(v5);
-
-// 호이스팅 : 선언하지 않고 사용하여도 선언문을 위로 끌어올림
+// 호이스팅 : 변수나 함수를 선언하지 않고 사용하여도 선언문을 위로 끌어올림
 // 자바스크립트는 line by line 실행된다.
 // 자바스크립트는 평가 > 실행의 단계로 코드를 수행한다.
-// 평가단계에서 선언문이 없으면 상단에 선언된 것으로 실행하고 나머지 코드를 실행한다.
+// 평가단계에서 선언문이 없으면 상단에 선언된 것으로 호이스팅한 후 전체 코드를 순차적으로 실행한다.
 console.log(v6);
 var v6;
 
