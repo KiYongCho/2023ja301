@@ -71,7 +71,7 @@ console.log(func9(3, 5, 7)); // c is undefined
 console.log(func9(3, 5));
 console.log(func9(3)); // 3 + undefined
 
-// 가변인자 함수 : ES6
+// 가변인자 함수 (Rest Parameters) : ES6
 function func10(...a) {
     console.log(a);
     console.log(arguments);
