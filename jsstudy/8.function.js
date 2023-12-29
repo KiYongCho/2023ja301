@@ -200,10 +200,7 @@ console.log(arr7.map((ele, idx) => unicodeArr[idx]));
 // 함수 체이닝 실습 5)
 // ['a', 'b', 'c', 'd', 'e']의 ASCII코드값의 총합 구하기
 const arr8 = ['a', 'b', 'c', 'd', 'e'];
-console.log(
-    arr8.map(ele => ele.charCodeAt())
-          .reduce((acc, curr) => acc + curr)
-);
+console.log(arr8.map(ele => ele.charCodeAt()).reduce((acc, curr) => acc + curr));
 
 
 // [과제 : 제출X, 1/2일 첫시간에 발표]
@@ -250,7 +247,7 @@ students.map((ele, idx) => {
 // s005 최영 국어:60 영어:50 수학:40
 // 총점 국어:400 영어:350 수학:300
 
-students.map(function(ele, idx){
+students.map((ele, idx) => {
     console.log(
         `s00${idx+1} ` +
         ele[`s00${idx+1}`].sname +
