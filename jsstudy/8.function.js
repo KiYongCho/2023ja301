@@ -179,49 +179,30 @@ console.log(
 // 함수 체이닝 실습 1)
 // ['a', 'b', 'c', 'd', 'e']를 ['e', 'd', 'c', 'b', 'a']로 변경
 const arr4 = ['a', 'b', 'c', 'd', 'e'];
-console.log(
-    arr4.sort(function(a, b) {
-        return b.charCodeAt() - a.charCodeAt();
-    })
-);
+console.log(arr4.sort((a, b) => b.charCodeAt() - a.charCodeAt()));
 
 // 함수 체이닝 실습 2)
 // ['a', 'b', 'c', 'd', 'e']를 [33, 34, 35, 36, 37]로 변경
 const arr5 = ['a', 'b', 'c', 'd', 'e'];
-console.log(
-    arr5.map(function(ele) {
-        return ele.charCodeAt() - 64;
-    })
-);
+console.log(arr5.map(ele => ele.charCodeAt() - 64));
 
 // 함수 체이닝 실습 3)
 // ['a', 'b', 'c', 'd', 'e']를 ['a','bb','ccc','dddd','eeeee']로 변경
 const arr6 = ['a', 'b', 'c', 'd', 'e'];
-console.log(
-    arr6.map(function(ele, idx) {
-        return ele.repeat(idx + 1);
-    })
-);
+console.log(arr6.map((ele, idx) => ele.repeat(idx + 1)));
 
 // 함수 체이닝 실습 4)
 // ['a', 'b', 'c', 'd', 'e']를 ['마','라','다','나','가']으로 변경
 const arr7 = ['a', 'b', 'c', 'd', 'e'];
 const unicodeArr = ['\uB9C8', '\uB77C', '\uB2E4', '\uB098', '\uAC00'];
-console.log(
-    arr7.map(function(ele, idx) {
-        return unicodeArr[idx];
-    })
-);
+console.log(arr7.map((ele, idx) => unicodeArr[idx]));
 
 // 함수 체이닝 실습 5)
 // ['a', 'b', 'c', 'd', 'e']의 ASCII코드값의 총합 구하기
 const arr8 = ['a', 'b', 'c', 'd', 'e'];
 console.log(
-    arr8.map(function(ele) {
-        return ele.charCodeAt();
-    }).reduce(function(acc, curr) {
-        return acc + curr;
-    })
+    arr8.map(ele => ele.charCodeAt())
+          .reduce((acc, curr) => acc + curr)
 );
 
 
@@ -244,7 +225,7 @@ const students = [
 // 최영 국어:-20, 영어:-20, 수학:-20
 
 const sbjSumArr = [0, 0, 0];
-students.map(function(ele, idx) {
+students.map((ele, idx) => {
     sbjSumArr[0] += ele[`s00${idx+1}`].skor;
     sbjSumArr[1] += ele[`s00${idx+1}`].seng;
     sbjSumArr[2] += ele[`s00${idx+1}`].smath;    
@@ -252,7 +233,7 @@ students.map(function(ele, idx) {
 const sbjAvgArr = sbjSumArr.map(function(ele) {
     return ele / students.length;
 });
-students.map(function(ele, idx){
+students.map((ele, idx) => {
     console.log(ele[`s00${idx+1}`].sname +
          ' 국어:' + (ele[`s00${idx+1}`].skor -  sbjAvgArr[0]) +
          ', 영어:' + (ele[`s00${idx+1}`].seng - sbjAvgArr[1]) + 
