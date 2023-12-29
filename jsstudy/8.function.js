@@ -296,6 +296,3 @@ console.log(`과목총점 국어:${sbjSumArr[0]} 영어:${sbjSumArr[1]} 수학:$
 
 
 
-
-
-
