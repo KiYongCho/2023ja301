@@ -188,18 +188,41 @@ console.log(
 // 함수 체이닝 실습 2)
 // ['a', 'b', 'c', 'd', 'e']를 [33, 34, 35, 36, 37]로 변경
 const arr5 = ['a', 'b', 'c', 'd', 'e'];
+console.log(
+    arr5.map(function(ele) {
+        return ele.charCodeAt() - 64;
+    })
+);
 
 // 함수 체이닝 실습 3)
 // ['a', 'b', 'c', 'd', 'e']를 ['a','bb','ccc','dddd','eeeee']로 변경
 const arr6 = ['a', 'b', 'c', 'd', 'e'];
+console.log(
+    arr6.map(function(ele, idx) {
+        return ele.repeat(idx + 1);
+    })
+);
 
 // 함수 체이닝 실습 4)
 // ['a', 'b', 'c', 'd', 'e']를 ['마','라','다','나','가']으로 변경
 const arr7 = ['a', 'b', 'c', 'd', 'e'];
+const unicodeArr = ['\uB9C8', '\uB77C', '\uB2E4', '\uB098', '\uAC00'];
+console.log(
+    arr7.map(function(ele, idx) {
+        return unicodeArr[idx];
+    })
+);
 
 // 함수 체이닝 실습 5)
 // ['a', 'b', 'c', 'd', 'e']의 ASCII코드값의 총합 구하기
 const arr8 = ['a', 'b', 'c', 'd', 'e'];
+console.log(
+    arr8.map(function(ele) {
+        return ele.charCodeAt();
+    }).reduce(function(acc, curr) {
+        return acc + curr;
+    })
+);
 
 
 // [과제 : 제출X, 1/2일 첫시간에 발표]
@@ -218,7 +241,24 @@ const students = [
 // 강감찬 국어:+10, 영어:+10, 수학:+10
 // 이순신 국어:+0, 영어:+0, 수학:+0
 // 장보고 국어:-10, 영어:-10, 수학:-10
-// 최영 국어:-10, 영어:-20, 수학:-20
+// 최영 국어:-20, 영어:-20, 수학:-20
+
+const sbjSumArr = [0, 0, 0];
+students.map(function(ele, idx) {
+    sbjSumArr[0] += ele[`s00${idx+1}`].skor;
+    sbjSumArr[1] += ele[`s00${idx+1}`].seng;
+    sbjSumArr[2] += ele[`s00${idx+1}`].smath;    
+});
+const sbjAvgArr = sbjSumArr.map(function(ele) {
+    return ele / students.length;
+});
+students.map(function(ele, idx){
+    console.log(ele[`s00${idx+1}`].sname +
+         ' 국어:' + (ele[`s00${idx+1}`].skor -  sbjAvgArr[0]) +
+         ', 영어:' + (ele[`s00${idx+1}`].seng - sbjAvgArr[1]) + 
+         ', 수학:' + (ele[`s00${idx+1}`].smath - sbjAvgArr[2])
+    );
+});
 
 // 함수 체이닝 과제 2)
 // 각 학생의 정보와 과목별총점을 아래와 같이 출력하시오.
@@ -228,6 +268,18 @@ const students = [
 // s004 장보고 국어:70 영어:60 수학:50
 // s005 최영 국어:60 영어:50 수학:40
 // 총점 국어:400 영어:350 수학:300
+
+students.map(function(ele, idx){
+    console.log(
+        `s00${idx+1} ` +
+        ele[`s00${idx+1}`].sname +
+         ' 국어:' + ele[`s00${idx+1}`].skor +
+         ', 영어:' + ele[`s00${idx+1}`].seng + 
+         ', 수학:' + ele[`s00${idx+1}`].smath + 
+         ', 학생총점:' + (ele[`s00${idx+1}`].skor + ele[`s00${idx+1}`].seng + ele[`s00${idx+1}`].smath)
+    );
+});
+console.log(`과목총점 국어:${sbjSumArr[0]} 영어:${sbjSumArr[1]} 수학:${sbjSumArr[2]} `);
 
 
 
