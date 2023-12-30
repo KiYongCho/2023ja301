@@ -1,8 +1,129 @@
 /* this */
 
 // 현재 메모리상에서 참조(사용)되고 있는 객체 자신을 가리키는 키워드
-// this를 이해하려면 먼저 context를 이해하고 JS의 작동방식을 이해해야함
+// JS에서 this를 이해하려면 먼저 실행컨텍스트를 이해하고 JS의 작동방식을 이해해야함
 // context (상황, 문맥)
-//     거리에서 욕을 하면 사람들이 싫어하지만, 욕쟁이할머니네서 할머니가 욕을 하면 좋아한다.
+//     모르는 사람이 욕을 하면 싫어하지만, 욕쟁이할머니가 욕을 하면 좋아한다.
 //     같은 욕이라도 상황(context)에 따라 다르게 해석된다.
-// JS에서는 this가 사용된 context에 따라 this가 다르게 해석된다.
+// JS에서는 this가 사용된 context에 따라 다르게 해석된다.
+
+// node에서는 global이 전역객체, 브라우져에서는 window가 전역객체
+// 즉 node 컨텍스트에서는 global이 전역객체, 브라우져 컨텍스트에서는 window가 전역객체
+//console.log(global);
+
+console.log(); 
+
+// 함수선언식내의 this는 함수를 호출한 객체 (실행컨텍스트:global)
+function f() {
+    console.log(this); // 함수를 호출한 global
+}
+f();
+
+console.log();
+
+// 블럭내에서의 this는 {} (실행컨텍스트:{})
+// 브라우져에서는 window (실행컨텍스트:window)
+{
+    console.log(this);  // {}
+    // console.log(this===global); // false
+}
+
+console.log();
+
+// 함수선언식,함수표현식과 화살표함수내의 this는 다르다.
+// 함수선언식,함수표현식 내의 this는 함수를 호출한 객체
+// 화살표함수내의 this는 자신을 감싼 객체
+const obj = {
+    name: '홍길동',
+    printName: function() {
+        console.log(this.name);
+    },
+    printNumbers: (a, b) => console.log(this.name, a, b),    
+    printThis: () => console.log(this)
+};
+obj.printName();    // 홍길동
+obj.printNumbers(3, 4); // undefined 3 4
+obj.printThis();    // {}, 브라우져에서는 window
+
+console.log();
+
+// 생성자함수 내에서의 this는 생성될 객체자신
+// 이때 함수표현식과 화살표함수내의 this는 같다.
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.printPerson = function() {
+        console.log(this.name, this.age);
+    },
+    this.printPerson2 = () => console.log(this.name, this.age)
+}
+const person = new Person('홍길동', 30);
+person.printPerson(); // 홍길동 30
+person.printPerson2(); // 홍길동 30
+
+console.log();
+
+// call, apply 메소드를 통해 실행컨텍스트에 상관없이 this를 고정
+// call은 인자를 하나씩 나열하여 전달, apply는 인자를 배열로 전달한다는 차이가 있다.
+const obj1 = {
+    name: '홍길동',
+    printName: function() {
+        console.log(this.name);
+    },
+    printNumbers: function(a, b) {
+        console.log(this.name, a, b);
+    },
+    printThis: function() {
+        console.log(this)
+    }
+};
+const obj2 = {
+    name: '강감찬'
+}
+obj1.printName();    // 홍길동
+obj1.printNumbers.call(obj2, 3, 4);   // 강감찬, 3, 4
+obj1.printNumbers.apply(obj2, [3, 4]); // 강감찬, 3, 4
+
+console.log();
+
+// 화살표함수에는 call, apply로 this를 전달할 수 없다.
+let obj3 = {
+    name: '홍길동',
+    printName: () => console.log(this.name),
+    printNumbers: (a, b) => console.log(this.name, a, b),
+    printThis: () => console.log(this)
+};
+const obj4 = {
+    name: '강감찬'
+}
+obj3.printName();    // undefined
+obj3.printNumbers.call(obj4, 3, 4);   // undefined, 3, 4
+obj3.printNumbers.apply(obj4, [3, 4]); // undefined, 3, 4
+
+console.log();
+
+// bind : this를 함수내의 객체로 하는 새로운 함수 생성
+function f() {
+    return this.name;
+}
+obj5 = {
+    name:'홍길동'
+}
+const newf = f.bind(obj5);
+console.log(newf());
+
+console.log();
+
+
+// strict mode에서는 this가 다르게 작용한다.
+
+"use strict";
+
+console.log(this); // {}, 브라우져에서는 window
+
+
+
+// DOM Event Handler내에서의 this는 이벤트대상객체 (eventTarget) : 이벤트편에서...
+
+
+
