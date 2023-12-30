@@ -1,0 +1,16 @@
+[출력창 초기화]
+install Code Runner in extension marketplace
+press ctrl+, to open setting.json and add "code-runner.clearPreviousOutput": true
+
+[단축키]
+shift + alt + 위/아래 : 라인 복사
+ctrl + x : 라인 삭제
+ctrl + / : 주석
+ctrl + d : 워드 복수 선택
+ctrl + b : 탐색창 토글
+alt + click : 선택적 다중 커서
+alt + 위 + 드래그 : 드래그범위 다중 커서
+alt + 위/아래 : 라인 이동
+ctrl + alt + n : 코드실행 (code runner)
+ctrl + home/end : 코드 최상/하 이동
+
