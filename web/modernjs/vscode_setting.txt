@@ -1,0 +1,4 @@
+[출력창 초기화]
+install Code Runner in extension marketplace
+press ctrl+, to open setting.json and add "code-runner.clearPreviousOutput": true
+
