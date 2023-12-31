@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.7/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        const Title = (
+            <h3 
+                id="title" 
+                onMouseEnter={
+                    ()=>console.log("mouse entered!!!")
+                }
+            >
+            I'm a h3
+            </h3>
+        );
+        const Button = (
+            <button
+                style={{
+                    backgroundColor: "tomato"
+                }}
+                onClick = {
+                    ()=>console.log("클릭됨!")
+                }
+            >
+            클릭
+            </button>
+        );
+        const container = React.createElement("div", null, [Title, Button]);
+        ReactDOM.render(container, root);
+    </script>
+</body>
+</html>
