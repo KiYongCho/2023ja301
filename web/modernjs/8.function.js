@@ -162,19 +162,82 @@ console.log(
 // 함수 체이닝 실습 1)
 // ['a', 'b', 'c', 'd', 'e']를 ['e', 'd', 'c', 'b', 'a']로 변경
 const arr4 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr4.sort((a, b) => b.charCodeAt() - a.charCodeAt()));
 
 // 함수 체이닝 실습 2)
 // ['a', 'b', 'c', 'd', 'e']를 [33, 34, 35, 36, 37]로 변경
 const arr5 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr5.map(ele => ele.charCodeAt() - 64));
 
 // 함수 체이닝 실습 3)
 // ['a', 'b', 'c', 'd', 'e']를 ['a','bb','ccc','dddd','eeeee']로 변경
 const arr6 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr6.map((ele, idx) => ele.repeat(idx + 1)));
 
 // 함수 체이닝 실습 4)
 // ['a', 'b', 'c', 'd', 'e']를 ['마','라','다','나','가']으로 변경
 const arr7 = ['a', 'b', 'c', 'd', 'e'];
+const unicodeArr = ['\uB9C8', '\uB77C', '\uB2E4', '\uB098', '\uAC00'];
+console.log(arr7.map((ele, idx) => unicodeArr[idx]));
 
 // 함수 체이닝 실습 5)
 // ['a', 'b', 'c', 'd', 'e']의 ASCII코드값의 총합 구하기
 const arr8 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr8.map(ele => ele.charCodeAt()).reduce((acc, curr) => acc + curr));
+
+
+// [과제 : 제출X, 1/2일 첫시간에 발표]
+
+const students = [
+    {"s001" : {sname: "홍길동", skor: 100, seng: 90, smath: 80}},
+    {"s002" : {sname: "강감찬", skor: 90, seng: 80, smath: 70}},
+    {"s003" : {sname: "이순신", skor: 80, seng: 70, smath: 60}},
+    {"s004" : {sname: "장보고", skor: 70, seng: 60, smath: 50}},
+    {"s005" : {sname: "최영", skor: 60, seng: 50, smath: 40}}
+];
+
+// 함수 체이닝 과제 1)
+// 각 학생의 과목별점수와 과목별점수평균과의 차를 구하여 아래와 같이 출력하시오.
+// 홍길동 국어:+20, 영어:+20, 수학:+20
+// 강감찬 국어:+10, 영어:+10, 수학:+10
+// 이순신 국어:+0, 영어:+0, 수학:+0
+// 장보고 국어:-10, 영어:-10, 수학:-10
+// 최영 국어:-20, 영어:-20, 수학:-20
+
+const sbjSumArr = [0, 0, 0];
+students.map((ele, idx) => {
+    sbjSumArr[0] += ele[`s00${idx+1}`].skor;
+    sbjSumArr[1] += ele[`s00${idx+1}`].seng;
+    sbjSumArr[2] += ele[`s00${idx+1}`].smath;    
+});
+const sbjAvgArr = sbjSumArr.map(function(ele) {
+    return ele / students.length;
+});
+students.map((ele, idx) => {
+    console.log(ele[`s00${idx+1}`].sname +
+         ' 국어:' + (ele[`s00${idx+1}`].skor -  sbjAvgArr[0]) +
+         ', 영어:' + (ele[`s00${idx+1}`].seng - sbjAvgArr[1]) + 
+         ', 수학:' + (ele[`s00${idx+1}`].smath - sbjAvgArr[2])
+    );
+});
+
+// 함수 체이닝 과제 2)
+// 각 학생의 정보와 과목별총점을 아래와 같이 출력하시오.
+// s001 홍길동 국어:100 영어:90 수학:80
+// s002 강감찬 국어:90 영어:80 수학:70
+// s003 이순신 국어:80 영어:70 수학:60
+// s004 장보고 국어:70 영어:60 수학:50
+// s005 최영 국어:60 영어:50 수학:40
+// 총점 국어:400 영어:350 수학:300
+
+students.map((ele, idx) => {
+    console.log(
+        `s00${idx+1} ` +
+        ele[`s00${idx+1}`].sname +
+         ' 국어:' + ele[`s00${idx+1}`].skor +
+         ', 영어:' + ele[`s00${idx+1}`].seng + 
+         ', 수학:' + ele[`s00${idx+1}`].smath + 
+         ', 학생총점:' + (ele[`s00${idx+1}`].skor + ele[`s00${idx+1}`].seng + ele[`s00${idx+1}`].smath)
+    );
+});
+console.log(`과목총점 국어:${sbjSumArr[0]} 영어:${sbjSumArr[1]} 수학:${sbjSumArr[2]} `);
