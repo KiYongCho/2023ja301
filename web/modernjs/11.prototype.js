@@ -4,22 +4,76 @@
 // - JS는 prototype 프라퍼티를 통해 상속(확장)을 구현한다.
 // - JS는 Java와 같은 상속(inheritance)모델이 아닌 위임(delegation)모델을 사용한다.
 // - 객체의 프라퍼티는 객체에 객체의 메소드는 그 객체의 프로토타입에 저장된다.
-// - 프로토타입은 객체가 가지는 프라퍼티인 객체다.
 // - 객체는 __proto__ 라는 숨김프라퍼티에 prototype으로 사용할 객체를 등록할 수 있다.
 //   (등록하면 상속을 받는 것이고 등록하지 않으면 Object를 상속받는다. 즉 Object의 프로토타입을 사용한다는 것이다)
 // - 프로토타입 체인(prototype chain) : 프로토타입객체가 상위 프로토타입객체의 프라퍼티와 메소드를 상속
 // 참고) https://www.nextree.co.kr/p7323/
 // 참고) https://medium.com/@limsungmook/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%99%9C-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%84%A0%ED%83%9D%ED%96%88%EC%9D%84%EA%B9%8C-997f985adb42
 
+// 생성자함수를 통한 객체 생성
+// 문제점 : 동일한 메소드가 객체마다 생성된다.
+function Circle(radius) {
+    this.radius = radius;
+    this.getArea = function() {
+        return Math.PI * this.radius**2;
+    }
+}
+const circle1 = new Circle(1); // circle1에는 radius, getArea가 있다
+const circle2 = new Circle(2); // circle2에도 radius, getArea가 있다
+console.log(circle1.getArea === circle2.getArea);
+console.log(circle1.getArea());
+console.log(circle2.getArea());
 
-// 프로토타입 직접 접근
+console.log();
+
+// 프로토타입 기반의 상속
+// 프라퍼티는 각자 소유, 메소드는 공유
+function Circle2(radius) {
+    this.radius = radius;
+}
+Circle2.prototype.getArea = function() {
+    return Math.PI * this.radius**2;
+};
+const circle3 = new Circle2(1); // circle1에는 radius가 있다
+const circle4 = new Circle2(2); // circle2에는 radius가 있다
+console.log(circle3.getArea === circle4.getArea); // getArea는 하나
+console.log(circle3.getArea());
+console.log(circle4.getArea());
+
+console.log();
+
+// 객체리터럴로 생성된 객체의 프로토타입(__proto__로 접근)은 Object.prototype
+const person = {};
+console.log(person.__proto__===Object.prototype); // true
+
+// 생성자함수로 생성된 객체의 프로토타입은 생성자함수의 prototype에 바인딩된 객체
+function Person() {
+}
+const person2 = new Person();
+console.log(person2.__proto__===Object.prototype); // false
+
+// 생성자함수 prototype을 사용할 수 있다.
+// 객체는 prototype에 직접 접근할 수 없고 __proto__를 통해 접근할 수 있다.
+// 생성자함수는 생성자함수.prototype에 constructor로 저장되어 있고
+// 객체는 생성자함수.prototype에 생성자함수.__proto__로 저장되어 있다.
+function Car() {
+}
+const car = new Car();
+console.log(Car === Car.prototype.constructor); // true
+console.log(car.__proto__ === Car.prototype); // true
+
+console.log();
+
+
+// Object는 최상위 객체이므로 Object의 프로토타입은 없다
 const o = new Object();
-o.name = 'o';
 console.log(o.prototype); // undefined
+
+console.log();
 
 // getter 통해 프로토타입 접근
 const op = Object.getPrototypeOf(o);
-op.name = 'newo';
+op.name = 'op';
 op.print = function() {
     console.log('op');
 };
