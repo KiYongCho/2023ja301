@@ -177,4 +177,75 @@ console.log();
 // hobby 프라퍼티는 obj1의 프로토타입인 Object에 등록되어 있다!
 console.log(obj1.__proto__ === Object.getPrototypeOf(obj1));
 
+console.log();
+
+// 정적프라퍼티/메서드
+// 생성자함수에 선언한 프라퍼티와 메서드로 생성자함수를 통해 참조 가능
+// 생성자함수를 통해 만들어진 객체를 통해서는 참조 불가능
+function PC() {
+    name: '퍼스털컴퓨터';
+}
+PC.price = 10000;
+PC.getPrice = function() {
+    return this.price;
+};
+console.log(PC.price); // 10000
+console.log(PC.getPrice()); // 10000
+
+const mypc = new PC();
+mypc.type = 'personal';
+// console.log(mypc.price); // error
+// console.log(mypc.getPrice()); // error
+// console.log(mypc.constructor.price); // 10000
+// console.log(mypc.constructor.getPrice()); // 10000
+
+console.log();
+
+// in 연산자 : 프라퍼티 존재 확인 (ES6의 Reflet.has메서드와 동일)
+console.log('name' in mypc); // true
+console.log(Reflect.has(mypc, 'name')); // true
+console.log('price' in mypc); // false
+
+// Object.prototype.hasOwnProperty : 프라퍼티가 객체 고유의 프라퍼티이면 true
+console.log(mypc.hasOwnProperty('name')); // false
+console.log(mypc.hasOwnProperty('type')); // true
+
+console.log();
+
+// Object.keys, Object.values, Object.entries (ES8)
+const gum = {
+    brand: '롯데',
+    name: '자일리톨',
+    pricd : 100
+};
+console.log(Object.keys(gum));
+console.log(Object.values(gum));
+console.log(Object.entries(gum));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
