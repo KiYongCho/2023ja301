@@ -4,11 +4,43 @@
 // - JS는 prototype 프라퍼티를 통해 상속(확장)을 구현한다.
 // - JS는 Java와 같은 상속(inheritance)모델이 아닌 위임(delegation)모델을 사용한다.
 // - 객체의 프라퍼티는 객체에 객체의 메소드는 그 객체의 프로토타입에 저장된다.
-// - 객체는 __proto__ 라는 숨김프라퍼티에 prototype으로 사용할 객체를 등록할 수 있다.
+// - 모든 객체는 [[Prototype]]이라는 내부 슬롯을 가지며 이 값은 프로토타입의 참조다.
+// - 모든 함수객체는 prototype 프라퍼티를 가진다.
+// - 모든 prototype은 생성자함수의 참조인 constructor 프라퍼티를 가진다.
+// - 객체리터럴에 의해 생성된 객체의 프로토타입은 Object.prototype이다.
+// - 생성자함수만 prototype을 생성하며 생성자함수를 통해 생성된 객체의 프로토타입은 생성자함수.prototype이다.
+// - 생성자함수를 통해 생성된 객체는 생성자함수의 prototype에 __proto__ 또는 getPrototypeOf를 통해 접근할 수 있다.
+// - 화살표함수와 메서드는 prototype을 생성하지 않는다.
+// - Object를 상속받은 객체는 __proto__ 라는 숨김프라퍼티에 prototype으로 사용할 객체를 등록할 수 있다.
 //   (등록하면 상속을 받는 것이고 등록하지 않으면 Object를 상속받는다. 즉 Object의 프로토타입을 사용한다는 것이다)
 // - 프로토타입 체인(prototype chain) : 프로토타입객체가 상위 프로토타입객체의 프라퍼티와 메소드를 상속
-// 참고) https://www.nextree.co.kr/p7323/
-// 참고) https://medium.com/@limsungmook/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%99%9C-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%84%A0%ED%83%9D%ED%96%88%EC%9D%84%EA%B9%8C-997f985adb42
+
+// __proto__
+const hong = {
+    name: '홍길동',
+    age: 30
+};
+console.log(hong);
+console.log(hong.__proto__ === Object.prototype); // true
+console.log(hong.__proto__.constructor === Object.prototype.constructor); // true
+console.log(hong.__proto__.constructor === Object); // true
+console.log(hong.__proto__.constructor === Object()); // false
+console.log(hong.__proto__.constructor === new Object()); // false
+
+hong.hobby = ['축구', '농구'];
+console.log(hong);
+
+Object.prototype.printHobby = function() {
+    console.log(this.hobby);
+}
+hong.printHobby();
+
+hong.__proto__.printName = function() {
+    console.log('hello');
+};
+Object.prototype.printName();
+
+console.log();
 
 // 생성자함수를 통한 객체 생성
 // 문제점 : 동일한 메소드가 객체마다 생성된다.
@@ -23,6 +55,17 @@ const circle2 = new Circle(2); // circle2에도 radius, getArea가 있다
 console.log(circle1.getArea === circle2.getArea);
 console.log(circle1.getArea());
 console.log(circle2.getArea());
+
+console.log();
+
+// 화살표함수, 메서드는 prototype을 소유하지 않는다. (non-constructor 이기 때문)
+console.log((()=>{}).prototype); // undefined
+const myobj = {
+    name() {
+        return this.name;
+    }
+};
+console.log(myobj.prototype); // undefined
 
 console.log();
 
@@ -42,6 +85,14 @@ console.log(circle4.getArea());
 
 console.log();
 
+// [[Prototype]]이라는 숨김프라퍼티 사용 이유 : 순환참조 방지
+// Cyclic __proto__ value 에러 발생
+// const a = {};
+// const b = {};
+// a.__proto__ = b;
+// b.__proto__ = a;
+
+
 // 객체리터럴로 생성된 객체의 프로토타입(__proto__로 접근)은 Object.prototype
 const person = {};
 console.log(person.__proto__===Object.prototype); // true
@@ -50,6 +101,7 @@ console.log(person.__proto__===Object.prototype); // true
 function Person() {
 }
 const person2 = new Person();
+console.log(person2.__proto__===Person.prototype); // true
 console.log(person2.__proto__===Object.prototype); // false
 
 // 생성자함수 prototype을 사용할 수 있다.
@@ -61,13 +113,6 @@ function Car() {
 const car = new Car();
 console.log(Car === Car.prototype.constructor); // true
 console.log(car.__proto__ === Car.prototype); // true
-
-console.log();
-
-
-// Object는 최상위 객체이므로 Object의 프로토타입은 없다
-const o = new Object();
-console.log(o.prototype); // undefined
 
 console.log();
 
