@@ -215,6 +215,78 @@ for (prop in obj3) {
     console.log(prop, obj3[prop]);
 }
 
+// 정적프라퍼티 / 정적메소드
+// 생성자함수객체에 선언한 프라퍼티와 메소드
+// 생성자함수객체를 통해서만 참조가 가능
+// 생성자함수를 통해 생성된 객체에서는 참조가 불가능
+// 생성된 객체들이 공유
+
+function PC() {
+    name: '퍼스널컴퓨터'
+};
+PC.price = 10000;   // 정적프라퍼티
+PC.getPrice = function() {  // 정적메소드
+    return this.price;
+}
+console.log(PC.price); // 10000
+console.log(PC.getPrice()); // 10000
+
+const pc1 = new PC();
+const pc2 = new PC();
+// console.log(pc1.price); // error
+// console.log(pc1.getPrice()); // error
+console.log(pc1.constructor.price);
+console.log(pc1.constructor.getPrice());
+
+// in연산자 : 프라퍼티 존재 확인 (ES6의 Reflect.has)
+console.log('name' in pc1); // true
+console.log('prototype' in Object); // true
+console.log(Reflect.has(pc1, 'name')); // true
+console.log(Reflect.has(pc1, 'price')); // false
+console.log('prototype' in pc1); // false
+console.log('prototype' in PC); // true
+
+console.log();
+
+// Object.keys, Object.values, Object.entries(ES8)
+const gum = {
+    brand: '롯데',
+    name: '자일리톨',
+    price: 100
+};
+console.log(Object.keys(gum));
+console.log(Object.values(gum));
+console.log(Object.entries(gum));
+
+console.log();
+
+
+// 실습 1)
+// 여러분이 생각하는 생성자함수를 하나 만들고 객체를 2개 생성해서 출력
+
+
+
+
+// 실습 2)
+// 분류가 가능한 어떤것을 선택해서 3단계 이상의 상속구조를 만들어 보세요.
+// 예) 동물>새>닭, 차>승용차>BMW, 스포츠>야구>롯데
+
+
+
+
+// 실습 3)
+// http://172.30.1.34:9999/ajaxTest/members.xml
+// 1. AJAX통신으로 xml데이터를 읽어온다.
+// 2. JS로 member객체를 생성하고 admin객체와 user객체가
+//    member객체를 상속받도록 한다.
+// 3. 읽어온 데이터를 화면(HTML 또는 콘솔)에 출력한다.
+
+// 실습 4)
+// http://172.30.1.34:9999/ajaxTest/members.json
+// 1. AJAX통신으로 json데이터를 읽어온다.
+// 2. JS로 member객체를 생성하고 admin객체와 user객체가
+//    member객체를 상속받도록 한다.
+// 3. 읽어온 데이터를 화면(HTML 또는 콘솔)에 출력한다.
 
 
 
