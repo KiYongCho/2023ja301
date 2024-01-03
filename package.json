@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jdom": "^3.2.5",
     "jquery": "^3.7.1",
     "jsdom": "^23.0.1"
   }
