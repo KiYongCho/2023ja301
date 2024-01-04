@@ -4,23 +4,39 @@
     "jquery": "^3.7.1",
     "jsdom": "^23.0.1"
   },
+<<<<<<< HEAD
   "name": "2023ja301-1",
   "description": "2023년도 중앙정보처리학원 301호 강의용 깃허브",
   "version": "1.0.0",
   "main": "index.js",
+=======
+>>>>>>> a9f9347f7c4f5d8be21a96650128cde51c1aa4fd
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-env": "^7.23.7",
     "@typescript-eslint/parser": "^6.17.0",
+<<<<<<< HEAD
     "eslint": "^7.32.0",
+=======
+    "eslint": "^8.56.0",
+>>>>>>> a9f9347f7c4f5d8be21a96650128cde51c1aa4fd
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.29.1",
+<<<<<<< HEAD
     "prettier": "3.1.1",
     "typescript": "^5.3.3"
   },
+=======
+    "typescript": "^5.3.3"
+  },
+  "name": "2023ja301",
+  "description": "2023년도 중앙정보처리학원 301호 강의용 깃허브",
+  "version": "1.0.0",
+  "main": "index.js",
+>>>>>>> a9f9347f7c4f5d8be21a96650128cde51c1aa4fd
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
