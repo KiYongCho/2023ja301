@@ -1,10 +1,5 @@
 {
-<<<<<<< HEAD
-  //"parser": ["@babel/eslint-parser", "@typescript-eslint/parser"],
-  //"parser": "@typescript-eslint/parser",
-=======
   "parser": "@typescript-eslint/parser",
->>>>>>> a9f9347f7c4f5d8be21a96650128cde51c1aa4fd
   "parserOptions": {
     "ecmaVersion": "latest"
   },
@@ -12,19 +7,14 @@
     "browser": true,
     "node": true,
     "commonjs": true,
-<<<<<<< HEAD
-    //"es2022": true
     "es2021": true
   },
   "globals": { "_": true },
   "plugins": ["import", "html"],
-  //"extends": ["airbnb-base", "prettier", "react-app"],
-=======
     "es2022": true
   },
   "globals": { "_": true },
   "plugins": ["import", "html"],
->>>>>>> a9f9347f7c4f5d8be21a96650128cde51c1aa4fd
   "extends": ["airbnb-base", "prettier"],
   "rules": {
     // "off" or 0 - turn the rule off
