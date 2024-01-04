@@ -1,17 +1,17 @@
 /* this */
 
-// 현재 메모리상에서 참조(사용)되고 있는 객체 자신을 가리키는 키워드
-// JS에서 this를 이해하려면 먼저 실행컨텍스트를 이해하고 JS의 작동방식을 이해해야함
-// context (상황, 문맥)
+// - 현재 메모리상에서 참조(사용)되고 있는 객체 자신을 가리키는 키워드
+// - 기본적으로 함수내의 this는 함수를 호출하여 실행하게한 객체를 가리킨다.
+// - 다만, 화살표함수는 화살표함수를 둘러싼 실행컨텍스트에 따라 this가 결정된다.
+// - JS에서 this를 이해하려면 먼저 실행컨텍스트를 이해하고 JS의 작동방식을 이해해야함
+// - context (상황, 문맥)
 //     모르는 사람이 욕을 하면 싫어하지만, 욕쟁이할머니가 욕을 하면 좋아한다.
 //     같은 욕이라도 상황(context)에 따라 다르게 해석된다.
-// JS에서는 this가 사용된 context에 따라 다르게 해석된다.
+//     즉, 같은 this라도 상황에 따라 다르게 해석된다.
+// - 실행컨텍스트 (Execution Context) : 현재 실행되고 있는 환경/상황, 현재 사용되고 있는 메모리
+// - JS에서는 사용중인 실행컨텍스트에 따라 this가 다르게 해석된다.
+// - JS에서는 bind, call, apply 함수를 통해서 필요할때 언제든 this를 변경할 수 있다.
 
-// node에서는 global이 전역객체, 브라우져에서는 window가 전역객체
-// 즉 node 컨텍스트에서는 global이 전역객체, 브라우져 컨텍스트에서는 window가 전역객체
-//console.log(global);
-
-console.log();
 
 // 함수선언식내의 this는 함수를 호출한 객체 (실행컨텍스트:global)
 function f() {
@@ -47,7 +47,7 @@ obj.printThis(); // {}, 브라우져에서는 window
 
 console.log();
 
-// 생성자함수 내에서의 this는 생성될 객체자신
+// 생성자함수 내에서의 this는 생성자함수를 호출할 객체자신
 // 이때 함수표현식과 화살표함수내의 this는 같다.
 function Person(name, age) {
   this.name = name;
@@ -55,7 +55,7 @@ function Person(name, age) {
   (this.printPerson = function () {
     console.log(this.name, this.age);
   }),
-    (this.printPerson2 = () => console.log(this.name, this.age));
+  (this.printPerson2 = () => console.log(this.name, this.age));
 }
 const person = new Person('홍길동', 30);
 person.printPerson(); // 홍길동 30
@@ -114,10 +114,5 @@ console.log(newf());
 
 console.log();
 
-// strict mode에서는 this가 다르게 작용한다.
-
-('use strict');
-
-console.log(this); // {}, 브라우져에서는 window
 
 // DOM Event Handler내에서의 this는 이벤트대상객체 (eventTarget)
