@@ -1,24 +1,48 @@
 window.onload = function () {
-  /*
-  const btn1 = document.getElementById('btn1');
-  btn1.addEventListener('click', function (event) {
-    const result = document.getElementById('result');
-    result.innerHTML = this.value + ' 버튼이 클릭됨!';
-  });
-  */
 
   // 실습 1) 버튼 중에서 클릭된 버튼의 아이디를 result에 출력
   const btns = document.getElementsByClassName('btn');
-  const result = document.getElementById('result');
+  const result1 = document.getElementById('result1');
   for (btn of btns) {
     btn.addEventListener('click', function () {
-      result.innerHTML = this.value + ' 버튼이 클릭됨!';
+      result1.innerHTML = this.value + ' 버튼이 클릭됨!';
     });
   }
 
   // 실습 2) 텍스트입력상자에 숫자 두개를 넣고 합계를 누르면 result2에
   //        합계 출력
+  const btnplus = document.getElementById('btnplus');
+  const result2 = document.getElementById('result2');
+  const txt2s = document.getElementsByClassName('txt2');
+  btnplus.addEventListener("click", function() {
+    result2.innerHTML
+      = parseFloat(txt2s[0].value) + parseFloat(txt2s[1].value);
+  });
 
   // 실습 3) 텍스트입력상자에 숫자 두개를 넣고 +,-,*,/ 버튼 누르면
-  //         result2에 결과 출력
+  //         result3에 결과 출력
+  const result3 = document.getElementById('result3'); 
+  const txt3s = document.getElementsByClassName('txt3');
+  const btn3s = document.getElementsByClassName('btn3');
+  for (btn3 of btn3s) {
+    btn3.addEventListener("click", function() {
+      let txt3Val1 = parseFloat(txt3s[0].value);
+      let txt3Val2 = parseFloat(txt3s[1].value);
+      switch(this.value) {
+        case '+':
+          result3.innerHTML = txt3Val1 + txt3Val2;
+          break;
+        case '-':
+          result3.innerHTML = txt3Val1 - txt3Val2;
+          break;
+        case '*':
+          result3.innerHTML = txt3Val1 * txt3Val2;
+          break;
+        case '/':
+          result3.innerHTML = txt3Val1 / txt3Val2;
+          break;
+      }
+    });
+  }
+
 };
