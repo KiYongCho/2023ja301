@@ -1,24 +1,5 @@
 {
-  "dependencies": {
-    "jdom": "^3.2.5",
-    "jquery": "^3.7.1",
-    "jsdom": "^23.0.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/eslint-parser": "^7.23.3",
-    "@babel/preset-env": "^7.23.7",
-    "@typescript-eslint/parser": "^6.17.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
     "keywords": [],
     "author": "",
     "license": "ISC"
-  }
 }
