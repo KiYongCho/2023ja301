@@ -64,10 +64,13 @@
         <option value="9">9</option>
       </select>
       <!-- 실습 7) 버튼을 클릭하면 학생데이터를 테이블에 출력 -->
-      <!--
-        홍길동 100 100 100, 강감찬 90 90 90, 이순신 80, 80, 80
-      -->
+      <!-- 홍길동 100 100 100, 강감찬 90 90 90, 이순신 80, 80, 80 -->
       <p><input type="button" id="btnscore" value="학생데이터" /></p>
+      <style>
+        table { border: 1px solid #333;}
+        table td { border: 1px solid #333; width: 80px; height: 30px;
+          border-collapse: collapse;}
+      </style>
       <table id="tbl">
         <thead>
           <tr>
