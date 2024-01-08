@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="jsonex2.js"></script>
     <style>
         h2 {
 
@@ -21,6 +23,12 @@
 <body>
     <div id="wrapper">
         <h2>TODO</h2>
+        <p>
+            <input class="sort" type="button" value="cASC" />&nbsp;
+            <input class="sort" type="button" value="cDESC" />&nbsp;
+            <input class="sort" type="button" value="ncASC" />&nbsp;
+            <input class="sort" type="button" value="ncDESC" />
+        </p>
         <div id="completed">
             <ul></ul>
         </div>
