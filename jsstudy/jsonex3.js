@@ -6,6 +6,7 @@
 //    검색을 구현한다. (문자열 검색시는 정규표현식 사용)
 // 3. 정렬옵션 (아이디ASC/DESC, 이름ASC/DESC)
 
+  let userArr = [];
 
   $(function() { 
     getData();
@@ -17,7 +18,10 @@
 
   const getData = function() {
     $.get("https://jsonplaceholder.typicode.com/users")
-        .done(users => printData(users))
+        .done(function(users) {
+            userArr = users;
+            printData(users);
+        })
         .fail(console.log('getData error!'))
   };
 
@@ -40,7 +44,12 @@
   const sortData = function(sortType) {
     if (sortType) {
         const sortProp = sortType.split("_")[0];
-        const sortMethod = sortType.split("_")[1];
-
+        if (sortType.split("_")[1]=='ASC') {
+            console.log(userArr);
+            userArr.sort((a, b) => a[sortProp] - b[sortProp]);
+        } else {
+            userArr.sort((a, b) => b[sortProp] - a[sortProp]);
+        }
+        printData(userArr);
     }
   };
