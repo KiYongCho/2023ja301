@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="regtester.js"></script>
+    <style>
+        input[type='text'], textarea {width: 600px; font-size: 20px;}
+    </style>
+</head>
+<body>
+    <h2>정규표현식 테스터</h2>
+    <div>
+        <p>패턴 : <input id="pattern" type="text" width="100" /></p>
+        <p>플래그 : 
+            g <input type="checkbox" value="g"/>&nbsp;
+            i <input type="checkbox" value="i" />&nbsp;
+            m <input type="checkbox" value="m" />
+        </p>
+        <p>문자열 : <textarea id="str" rows="10"></textarea></p>
+        <p><input id="btn" type="button" value="결과확인" /></p>
+        <p><span id="result"></span></p>
+    </div>
+</body>
+</html>
