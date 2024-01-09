@@ -1,14 +1,14 @@
 $(function() {
 
-    $("#btn").on("click", function() {
+    $("#pattern").on("keydown", function() {
         let flagStr = '';
-        $("input:checked").toArray().forEach(inEle => {
+        $("input.flag:checked").toArray().forEach(inEle => {
             const eleVal = $(inEle).attr('value');
             if (eleVal!='test' && eleVal!='match') {
                 flagStr += $(inEle).attr('value'); 
             }
         });
-        $("input:checked").toArray().forEach(inEle => {
+        $("input.method:checked").toArray().forEach(inEle => {
             const eleVal = $(inEle).attr('value');
             if (eleVal=='test') printTest(flagStr);
             if (eleVal=='match') printMatch(flagStr);
@@ -17,6 +17,7 @@ $(function() {
 });
 
 function printTest(flagStr) {
+    console.log($("#str").val());
     $("#result").text(
         new RegExp($("#pattern").val(), flagStr)
             .test($("#str").val()));
