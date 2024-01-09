@@ -7,10 +7,40 @@
 // 3. 정렬옵션 (아이디ASC/DESC, 이름ASC/DESC)
 
 
-  $(function() {
-
-    $.get("https://jsonplaceholder.typicode.com/users")
-        .done()
-        .fail()
-
+  $(function() { 
+    getData();
+    $("#sortType").on("change", function() {
+            sortData($(this).val());
+        }
+    );
   });
+
+  const getData = function() {
+    $.get("https://jsonplaceholder.typicode.com/users")
+        .done(users => printData(users))
+        .fail(console.log('getData error!'))
+  };
+
+  const printData = function(users) {
+    $("tbody").empty();
+    users.forEach(user => {
+        $("tbody").append(`
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.username}</td>
+            <td>${user.phone}</td>
+            <td>${user.email}</td>
+            <td>${user.website}</td>
+        </tr>
+    `);
+    });
+  }
+
+  const sortData = function(sortType) {
+    if (sortType) {
+        const sortProp = sortType.split("_")[0];
+        const sortMethod = sortType.split("_")[1];
+
+    }
+  };
