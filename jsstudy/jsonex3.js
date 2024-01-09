@@ -7,13 +7,28 @@
 // 3. 정렬옵션 (아이디ASC/DESC, 이름ASC/DESC)
 
   let userArr = [];
+  let selType = '';
 
   $(function() { 
     getData();
     $("#sortType").on("change", function() {
-            sortData($(this).val());
+        sortData($(this).val());
+    });
+    $("#selType").on("change", function() {
+        selType = $(this).val();
+    });
+    $("#srchBtn").on("click", function() {
+        const selValue = $("#selValue").val();
+        if (!selType) {
+            alert('검색타입을 선택해 주세요!');
+            return;
         }
-    );
+        if (!selValue) {
+            alert('검색어를 입력해 주세요!');
+            return;
+        }
+        searchData(selType, selValue);
+    });
   });
 
   const getData = function() {
@@ -22,7 +37,7 @@
             userArr = users;
             printData(users);
         })
-        .fail(console.log('getData error!'))
+        .fail(() => console.log("getData error!"))
   };
 
   const printData = function(users) {
@@ -45,11 +60,28 @@
     if (sortType) {
         const sortProp = sortType.split("_")[0];
         if (sortType.split("_")[1]=='ASC') {
-            console.log(userArr);
-            userArr.sort((a, b) => a[sortProp] - b[sortProp]);
+            userArr.sort((a, b) => {
+                if(Number.isInteger(a[sortProp])) {
+                    return a[sortProp] - b[sortProp];
+                } else {
+                    return a[sortProp].localeCompare(b[sortProp]);
+                }
+            });
         } else {
-            userArr.sort((a, b) => b[sortProp] - a[sortProp]);
+            userArr.sort((a, b) => {
+                if(Number.isInteger(a[sortProp])) {
+                    return b[sortProp] - a[sortProp];
+                } else {
+                    return b[sortProp].localeCompare(a[sortProp]);
+                }
+            });
         }
         printData(userArr);
     }
+  };
+
+  const searchData = function(selType, selValue) {
+      printData(userArr.filter(user => {
+        return new RegExp(selValue).test(String(user[selType]));
+      }));
   };
