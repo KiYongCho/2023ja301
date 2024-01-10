@@ -12,3 +12,12 @@
 //   4. 메모수정
 //   5. 메모상세
 //   6. 메모검색(제목, 내용)
+
+$(function() {
+
+    $("#registBtn").on("click", function() {
+        $("#regist")
+            .css("display", "block");
+    });
+
+});

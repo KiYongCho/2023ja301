@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSMEMO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="jsmemo.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        div#main {
+            width: 800px;
+            border: 1px solid #333;
+        }
+        div#list { width: 298px; }
+        div#detail { width: 498px; }
+        div#regist { 
+            border: 1px solid #333; 
+        }
+        div#regist input[type='text'], div#regist textarea { 
+            width: 240px; 
+        }
+        .cont {
+            height: 600px;
+            border: 1px solid #333;
+            position: relative;
+            float: left;
+        }
+        div#bottom {
+            padding: 10px 0 0 100px;
+            clear: both;
+        }
+        div#regist {
+            position: absolute;
+            padding: 10px;
+            top: 100px;
+            left: 100px;
+            display: none;
+            background-color: lightgray;
+        }
+        .alignc {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="main">
+            <h2 class="alignc">JSMEMO</h2>
+            <div id="list" class="cont">
+                <p class="alignc">
+                    <input id="searchTxt" type="text" />&nbsp;
+                    <input id="searchBtn" type="button" value="검색" />
+                </p>
+                <ul>
+                    <li>title1</li>
+                    <li>title2</li>
+                    <li>...</li>
+                </ul>
+            </div>
+            <div id="detail" class="cont">
+                
+            </div>
+            <div id="bottom">
+                <p><input id="registBtn" type="button" value="메모작성" /></p>
+            </div>
+        </div>
+
+    </div>   
+    <div id="regist">
+        <h3 class="alignc">메모등록</h3>
+        <p>
+            제목 <input id="subject" type="text" />
+        </p>
+        <p>
+            내용 <textarea id="content" rows="20"></textarea>
+        </p>
+        <p class="alignc">
+            <input id="cancel" type="button" value="취소" />&nbsp;
+            <input id="confirm" type="button" value="확인" />
+        </p>
+    </div>     
+</body>
+</html>
