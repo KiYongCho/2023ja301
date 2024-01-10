@@ -20,6 +20,8 @@
         }
         div#list { width: 298px; }
         div#detail { width: 498px; }
+        div#detail textarea {width: 450px; height: 320px;}
+        div#detail p {text-align: right; padding-right: 10px;}
         div#regist { 
             border: 1px solid #333; 
         }
@@ -65,7 +67,11 @@
                 </ul>
             </div>
             <div id="detail" class="cont">
-                
+                <textarea id="detailcont"></textarea>
+                <p>
+                    <input type="button" value="수정" />&nbsp;
+                    <input type="button" value="삭제" />
+                </p>
             </div>
             <div id="bottom">
                 <p><input id="registBtn" type="button" value="메모작성" /></p>
