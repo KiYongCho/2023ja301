@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horse Racing Game</title>
+  <style>
+    .race-track {
+      width: 80%;
+      margin: auto;
+      border: 1px solid #000;
+      position: relative;
+      height: 100px;
+    }
+
+    .horse {
+      width: 20px;
+      height: 20px;
+      background-color: #333;
+      position: absolute;
+      bottom: 0;
+    }
+
+    button {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="race-track" id="raceTrack">
+  <div class="horse" id="horse1"></div>
+  <div class="horse" id="horse2"></div>
+  <div class="horse" id="horse3"></div>
+</div>
+
+<button onclick="startRace()">Start Race</button>
+
+<script>
+  function startRace() {
+    const raceTrack = document.getElementById('raceTrack');
+    const horses = document.querySelectorAll('.horse');
+
+    horses.forEach(horse => {
+      horse.style.left = '0';
+    });
+
+    const raceInterval = setInterval(() => {
+      horses.forEach(horse => {
+        const distance = Math.floor(Math.random() * 10) + 1;
+        horse.style.left = parseInt(horse.style.left) + distance + 'px';
+
+        if (parseInt(horse.style.left) >= raceTrack.offsetWidth - horse.offsetWidth) {
+          clearInterval(raceInterval);
+          alert(`${horse.id} wins the race!`);
+        }
+      });
+    }, 100);
+  }
+</script>
+
+</body>
+</html>
