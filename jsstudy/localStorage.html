@@ -9,6 +9,10 @@
         //               브라우져 사용시 데이터를 저장/조회하는 기능
         if (localStorage) {
 
+            for (obj in localStorage) {
+                console.log(obj);
+            }
+
             localStorage.setItem("name", "홍길동");
             localStorage.setItem("age", "30");
             console.log(localStorage.getItem("name"));
