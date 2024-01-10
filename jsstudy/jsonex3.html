@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="jsonex3.js"></script>
+    <style>
+        table {width: 1000px;}
+        table, th, td {border: 1px solid #333; border-collapse: collapse;}
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+            <select id="sortType">
+                <option value="">---선택---</option>
+                <option value="id_ASC">아이디ASC</option>
+                <option value="id_DESC">아이디DESC</option>
+                <option value="name_ASC">이름ASC</option>
+                <option value="name_DESC">이름DESC</option>
+            </select>
+            &nbsp;
+            <select id="selType">
+                <option value="">---선택---</option>
+                <option value="id">아이디</option>
+                <option value="name">이름</option>
+                <option value="username">별칭</option>
+            </select>
+            &nbsp;
+            <input id="selValue" type="text" />
+            &nbsp;
+            <input id="srchBtn" type="button" value="검색" />
+        </p>
+        <table>
+            <thead>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>별칭</th>
+                <th>휴대폰</th>
+                <th>이메일</th>
+                <th>웹사이트</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
