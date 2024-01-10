@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS메모장</title>
-    <script defer src="jstest.js"></script>
+    <title>로컬스토리지</title>
+    <script>
+        // 로컬스토리지 : Browser API 중의 하나로
+        //               브라우져 사용시 데이터를 저장/조회하는 기능
+        if (localStorage) {
+
+            localStorage.setItem("name", "홍길동");
+            localStorage.setItem("age", "30");
+            console.log(localStorage.getItem("name"));
+            console.log(localStorage.getItem("age"));
+
+            const person = {'name':'강감찬', 'age':20};
+            localStorage.setItem("person", JSON.stringify(person));
+            const item = localStorage.getItem("person");
+            console.log(JSON.parse(item).name);
+            console.log(JSON.parse(item).age);
+                
+        }
+    </script>
 </head>
 <body>
     
