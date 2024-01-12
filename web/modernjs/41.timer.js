@@ -24,6 +24,7 @@ document.querySelector("#btn1").addEventListener("click", function() {
 
 // 인자 전달
 document.querySelector("#btn2").addEventListener("click", function() {
-    setInterval((name, age) => { document.querySelector("#args").textContent = `${name} ${age}`; }, 10, "홍길동", 30);
+    setInterval((name, age) => 
+		{ document.querySelector("#args").textContent = `${name} ${age}`; }, 10, "홍길동", 30);
 });
 
