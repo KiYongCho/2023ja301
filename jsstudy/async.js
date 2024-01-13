@@ -33,8 +33,6 @@
 // Promise.race : 프라미스 병렬 처리, 배열이나 이터러블로 전달받은 어떤 한 프라미스라도 fulfilled 상태이면 처리결과를 배열로 저장하고 프라미스 반환
 // Promise.allSettled : 프라미스 병렬 처리, 배열이나 이터러블로 전달받은 모든 프라미스가 settled 상태(fulfilled or rejected)이면 처리결과를 배열로 저장하고 프라미스 반환
 
-/*
-
 // 프라미스 생성
 const promiseGet = url => {
     return new Promise((resolve, reject) => {
@@ -90,8 +88,6 @@ promiseGet2('https://jsonplaceholder.typicode.com/posts/1')
 promiseGet2('https://jsonplaceholder.typicode.com/posts/1000000')
     .then(undefined, ()=>console.log('실패'))
     .finally(()=>console.log('성공하든 실패하든 난 수행'));
-
-    */
 
 // 프라미스 정적 메서드
 console.log(Promise.resolve(1));
